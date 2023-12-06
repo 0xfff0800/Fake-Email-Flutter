@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:clipboard/clipboard.dart';
+// import 'package:clipboard/clipboard.dart';
 
 
 void main() {
@@ -180,6 +180,15 @@ Container(
           IconButton(
             onPressed: () {
             Clipboard.setData(ClipboardData(text: email));
+            final snackBar = SnackBar(
+            content: const Text('Copied'),
+            behavior: SnackBarBehavior.floating,
+            shape : RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: const BorderSide(color: Colors.purple, width: 2),
+              ),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
             icon: Icon(Icons.copy_all),
             color: Colors.purple, 
@@ -208,18 +217,22 @@ Container(
     children: [
       SizedBox(height: 10),
       Text(
-        '''
-to : $ToEmail
+      'to : $ToEmail\n\nMessage:\n\n$message',
+    ),
 
-Message: 
-        
-$message''',
-        
-        style: TextStyle(fontSize: 15),
-        ),
+
           IconButton(
             onPressed: () {
             Clipboard.setData(ClipboardData(text: message));
+            final snackBar = SnackBar(
+            content: const Text('Copied'),
+            behavior: SnackBarBehavior.floating,
+            shape : RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: const BorderSide(color: Colors.purple, width: 2),
+              ),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
             icon: const Icon(Icons.copy_all),
             color: Colors.purple, 
